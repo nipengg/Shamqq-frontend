@@ -14,6 +14,10 @@ Color background4 = Color(0xff252836);
 Color primaryText = Color(0xffF1F0F2);
 Color secondaryText = Color(0xff999999);
 Color subtitleColor = Color(0xff504F5E);
+Color titleColor = Color(0xff2E2E2E);
+Color cardColor = Color(0xffECEDEF);
+Color transparentColor = Colors.transparent;
+
 
 TextStyle primaryTextStyle = GoogleFonts.poppins(
   color: primaryText
@@ -30,8 +34,13 @@ TextStyle subtitleTextStyle = GoogleFonts.poppins(
 TextStyle priceTextStyle = GoogleFonts.poppins(
   color: priceColor
 );
+
 TextStyle purpleTextStyle = GoogleFonts.poppins(
   color: primaryColor
+);
+
+TextStyle titleTextStyle = GoogleFonts.poppins(
+  color: titleColor
 );
 
 FontWeight light = FontWeight.w300;
