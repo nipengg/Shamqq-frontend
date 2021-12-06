@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shamqq_frontend/theme.dart';
+import 'package:shamqq_frontend/widgets/chat_bubble.dart';
 
 class DetailChatPage extends StatelessWidget {
   @override
@@ -85,9 +86,10 @@ class DetailChatPage extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 16),
                     child: Center(
                       child: TextFormField(
+                        style: primaryTextStyle,
                         decoration: InputDecoration.collapsed(
                           hintText: 'Type message...',
-                          hintStyle: subtitleTextStyle
+                          hintStyle: subtitleTextStyle,
                         ),
                       ),
                     ),
@@ -102,9 +104,20 @@ class DetailChatPage extends StatelessWidget {
       );
     }
 
+    Widget content(){
+      return ListView(
+        padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+        children: [
+          ChatBubble(isSender: true, text: 'Hi, Is this Item still available?', hasProduct: true,),
+          ChatBubble(isSender: false, text: 'Goodnight, this item is available in size 40 and 41',),
+        ],
+      );
+    }
+
     return Scaffold(
       backgroundColor: background3,
       appBar: header(),
+      body: content(),
       bottomNavigationBar: chatInput(),
     );
   }
