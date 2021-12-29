@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shamqq_frontend/screens/edit_profile_page.dart';
 import 'package:shamqq_frontend/screens/home/detail_chat_page.dart';
 import 'package:shamqq_frontend/screens/home/main_page.dart';
 import 'package:shamqq_frontend/screens/sign_in.dart';
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
         '/sign-up': (context) => SignUpPage(),
         '/home': (context) => MainPage(),
         '/detail-chat': (conetxt) => DetailChatPage(),
+        '/edit-profile': (context) => EditProfile(),
       },
     );
   }
