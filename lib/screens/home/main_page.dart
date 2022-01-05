@@ -98,7 +98,7 @@ class _MainPageState extends State<MainPage> {
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: background1,
+      backgroundColor: currentIndex == 0 ? background1 : background3,
       floatingActionButton: cartButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: customBottomNav(),
