@@ -15,6 +15,18 @@ class _ProductPageState extends State<ProductPage> {
     'assets/Sepatu_running.png',
   ];
 
+  List familiarShoes = [
+    'assets/Sepatu_running.png',
+    'assets/Sepatu_running.png',
+    'assets/Sepatu_running.png',
+    'assets/Sepatu_running.png',
+    'assets/Sepatu_running.png',
+    'assets/Sepatu_running.png',
+    'assets/Sepatu_running.png',
+    'assets/Sepatu_running.png',
+    'assets/Sepatu_running.png',
+  ];
+
   int currentIndex = 0;
 
   @override
@@ -32,10 +44,20 @@ class _ProductPageState extends State<ProductPage> {
       );
     }
 
+    Widget familiarCard(String imageUrl){
+      return Container(
+        width: 54,
+        height: 54,
+        margin: EdgeInsets.only(right: 16),
+        decoration: BoxDecoration(
+          image: DecorationImage(image: AssetImage(imageUrl)),
+          borderRadius: BorderRadius.circular(6)
+        ),
+      );
+    }
+
     Widget header(){
-
       int index = -1;
-
       return Column(
         children: [
           Container(
@@ -82,11 +104,111 @@ class _ProductPageState extends State<ProductPage> {
       );
     }
 
+    Widget content(){
+      int index = -1;
+      return Container(
+        width: double.infinity,
+        margin: EdgeInsets.only(top: 17),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+          color: background1,
+        ),
+        child: Column(
+          children: [
+            // Header
+            Container(
+              margin: EdgeInsets.only(top: defaultMargin, left: defaultMargin, right: defaultMargin),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Running Shoes 2.0", style: primaryTextStyle.copyWith(fontSize: 18, fontWeight: semiBold)),
+                        Text("Hiking", style: secondaryTextStyle.copyWith(fontSize: 12),)
+                      ],
+                    ),
+                  ),
+                  Image.asset('assets/button_wishlist.png', width: 46,),
+                ],
+              ),
+            ),
+
+            // Price Box
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+              width: double.infinity,
+              margin: EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(4),
+                color: background2,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Price starts from", style: primaryTextStyle.copyWith(fontSize: 14),),
+                  Text("\$149.99", style: priceTextStyle.copyWith(fontSize: 16, fontWeight: semiBold),)
+                ],
+              ),
+            ),
+
+            // Description
+            Container(
+              width: double.infinity,
+              margin: EdgeInsets.only(top: 30, left: 30, right: 30),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Description", style: primaryTextStyle.copyWith(fontWeight: medium),),
+                  SizedBox(height: 12,),
+                  Text(
+                    "Ipsum in Lorem quis amet eiusmod culpa excepteur irure.  Ad ut aliquip tempor amet officia tempor nisi officia exercitation. Ea aute commodo reprehenderit laborum et minim anim dolor quis ad mollit. Quis elit est adipisicing cillum. Quis elit est adipisicing cillum. Lorem",
+                    style: subtitleTextStyle.copyWith(fontWeight: light),
+                    textAlign: TextAlign.justify,
+                  )
+                ],
+              ),
+            ),
+
+            // Familiar Shoes
+            Container(
+              width: double.infinity,
+              margin: EdgeInsets.only(top: 30),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 30),
+                    child: Text("Familiar Shoes", style: primaryTextStyle.copyWith(fontWeight: medium),),
+                  ),
+                  SizedBox(height: 12,),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children:
+                        familiarShoes.map((image){
+                          ++index;
+                          return Container(
+                            margin: EdgeInsets.only(left: index == 0 ? 16 : 0),
+                            child: familiarCard(image),
+                          );
+                        }).toList(),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
     return Scaffold(
       backgroundColor: cardColor,
       body: ListView(
         children: [
           header(),
+          content(),
         ],
       ),
     );
