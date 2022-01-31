@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shamqq_frontend/screens/cart_page.dart';
 import 'package:shamqq_frontend/screens/edit_profile_page.dart';
 import 'package:shamqq_frontend/screens/home/detail_chat_page.dart';
 import 'package:shamqq_frontend/screens/home/main_page.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
         '/detail-chat': (conetxt) => DetailChatPage(),
         '/edit-profile': (context) => EditProfile(),
         '/product': (context) => ProductPage(),
+        '/cart': (context) => CartPage(),
       },
     );
   }
