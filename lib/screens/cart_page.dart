@@ -57,11 +57,58 @@ class CartPage extends StatelessWidget {
       );
     }
 
+    Widget customButtonNav(){
+      return Container(
+        height: 180,
+        child: Column(
+          children: [
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Subtotal', style: primaryTextStyle,),
+                  Text('\$100', style: priceTextStyle.copyWith(fontSize: 16, fontWeight: semiBold),),
+                ],
+              ),
+            ),
+            SizedBox(height: 30,),
+            Divider(thickness: 0.3, color: subtitleColor,),
+            SizedBox(height: 30),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+              height: 50,
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  backgroundColor: primaryColor,
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/checkout');
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Continue to Checkout', style: primaryTextStyle.copyWith(fontSize: 16, fontWeight: semiBold)),
+                    Icon(Icons.arrow_forward, color: primaryText,),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
 
     return Scaffold(
       backgroundColor: background3,
       appBar: header(),
       body: content(),
+      bottomNavigationBar: customButtonNav(),
     );
   }
 }
