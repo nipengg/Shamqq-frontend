@@ -2,13 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shamqq_frontend/providers/auth_provider.dart';
 import 'package:shamqq_frontend/theme.dart';
+import 'package:shamqq_frontend/widgets/loading_button.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
 
+  @override
+  _SignUpPageState createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController nameController = TextEditingController(text: '');
+
   final TextEditingController usernameController = TextEditingController(text: '');
+
   final TextEditingController emailController = TextEditingController(text: '');
+
   final TextEditingController passwordController = TextEditingController(text: '');
+
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +27,11 @@ class SignUpPage extends StatelessWidget {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
 
     handleSignUp() async {
+
+      setState(() {
+        isLoading = true;
+      });
+
       if (await authProvider.register(
         name: nameController.text,
         username: usernameController.text,
@@ -25,8 +41,18 @@ class SignUpPage extends StatelessWidget {
         Navigator.pushNamed(context, '/home');
         print('registered!');
       } else {
-        print('register error');
+        print('register error!');
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: alertColor,
+            content: Text('Something went wrong...', textAlign: TextAlign.center,)
+          ),
+        );
       }
+
+      setState(() {
+        isLoading = false;
+      });
     }
 
     Widget header(){
@@ -233,7 +259,7 @@ class SignUpPage extends StatelessWidget {
               usernameInput(),
               emailInput(),
               passwordInput(),
-              signUpButton(),
+              isLoading ? LoadingButton() : signUpButton(),
               Spacer(),
               footer(),
             ],
