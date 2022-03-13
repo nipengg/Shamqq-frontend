@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shamqq_frontend/models/user_model.dart';
+import 'package:shamqq_frontend/providers/auth_provider.dart';
 import 'package:shamqq_frontend/theme.dart';
 import 'package:shamqq_frontend/widgets/product_card.dart';
 import 'package:shamqq_frontend/widgets/product_tile.dart';
@@ -6,6 +9,9 @@ import 'package:shamqq_frontend/widgets/product_tile.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel user = authProvider.user;
 
     Widget header(){
       return Container(
@@ -16,8 +22,8 @@ class HomePage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Hello, Neville Cornelius', style: primaryTextStyle.copyWith(fontSize: 24, fontWeight: semiBold),),
-                  Text('@nipengg', style: subtitleTextStyle.copyWith(fontSize: 16, fontWeight: regular),)
+                  Text('Hello, ${user.name}', style: primaryTextStyle.copyWith(fontSize: 24, fontWeight: semiBold),),
+                  Text('@${user.username}', style: subtitleTextStyle.copyWith(fontSize: 16, fontWeight: regular),)
                 ],
               ),
             ),
@@ -26,7 +32,7 @@ class HomePage extends StatelessWidget {
               height: 54,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                image: DecorationImage(image: AssetImage('assets/Image_profile.png'))
+                image: DecorationImage(image: NetworkImage(user.profilePhotoUrl))
               ),
             ),
           ],

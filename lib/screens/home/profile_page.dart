@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:shamqq_frontend/theme.dart';
+import 'package:shamqq_frontend/providers/auth_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:shamqq_frontend/models/user_model.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel user = authProvider.user;
 
     Widget header(){
       return AppBar(
@@ -16,15 +22,15 @@ class ProfilePage extends StatelessWidget {
             child: Row(
               children: [
                 ClipOval(
-                  child: Image.asset('assets/Image_profile.png', width: 64,),
+                  child: Image.network(user.profilePhotoUrl, width: 64,),
                 ),
                 SizedBox(width: 16,),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Hallo, Neville', style: primaryTextStyle.copyWith(fontSize: 24, fontWeight: semiBold),),
-                      Text('@nipengg', style: subtitleTextStyle.copyWith(fontSize: 16),),
+                      Text('Hallo, ${user.name}', style: primaryTextStyle.copyWith(fontSize: 24, fontWeight: semiBold),),
+                      Text('@${user.username}', style: subtitleTextStyle.copyWith(fontSize: 16),),
                     ],
                   ),
                 ),

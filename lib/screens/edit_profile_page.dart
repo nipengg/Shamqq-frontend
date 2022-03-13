@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:shamqq_frontend/theme.dart';
+import 'package:shamqq_frontend/providers/auth_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:shamqq_frontend/models/user_model.dart';
 
 class EditProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel user = authProvider.user;
 
     Widget header(){
       return AppBar(
@@ -30,7 +36,7 @@ class EditProfile extends StatelessWidget {
             TextFormField(
               style: primaryTextStyle,
               decoration: InputDecoration(
-                hintText: 'Neville Cornelius',
+                hintText: user.name,
                 hintStyle: primaryTextStyle,
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: subtitleColor),
@@ -52,7 +58,7 @@ class EditProfile extends StatelessWidget {
             TextFormField(
               style: primaryTextStyle,
               decoration: InputDecoration(
-                hintText: '@nipengg',
+                hintText: '@${user.username}',
                 hintStyle: primaryTextStyle,
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: subtitleColor),
@@ -74,7 +80,7 @@ class EditProfile extends StatelessWidget {
             TextFormField(
               style: primaryTextStyle,
               decoration: InputDecoration(
-                hintText: 'nevillecorneliustj@gmail.com',
+                hintText: user.email,
                 hintStyle: primaryTextStyle,
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: subtitleColor),
@@ -99,7 +105,10 @@ class EditProfile extends StatelessWidget {
               margin: EdgeInsets.only(top: defaultMargin),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                image: DecorationImage(image: AssetImage('assets/Image_profile.png'))
+                image: DecorationImage(
+                  fit: BoxFit.fill,
+                  image: NetworkImage(user.profilePhotoUrl)
+                ),
               ),
             ),
             nameInput(),
