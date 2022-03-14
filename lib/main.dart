@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shamqq_frontend/providers/auth_provider.dart';
+import 'package:shamqq_frontend/providers/product_provider.dart';
 import 'package:shamqq_frontend/screens/cart_page.dart';
 import 'package:shamqq_frontend/screens/checkout_page.dart';
 import 'package:shamqq_frontend/screens/checkout_success.dart';
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => AuthProvider(),),
+        ChangeNotifierProvider(create: (context) => ProductProvider(),),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
