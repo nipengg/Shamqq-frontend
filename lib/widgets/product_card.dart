@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:shamqq_frontend/models/product_model.dart';
 import 'package:shamqq_frontend/theme.dart';
 
 class ProductCard extends StatelessWidget {
+
+  final ProductModel product;
+  ProductCard(this.product);
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -20,17 +25,17 @@ class ProductCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 30,),
-            Image.asset('assets/Sepatu_running.png', width: 215, height: 150, fit: BoxFit.cover,),
+            Image.network(product.galleries[0].url, width: 215, height: 150, fit: BoxFit.cover,),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Running', style: secondaryTextStyle.copyWith(fontSize: 12),),
+                  Text(product.category.name, style: secondaryTextStyle.copyWith(fontSize: 12),),
                   SizedBox(height: 6,),
-                  Text('Running Shoes 2.0', style: titleTextStyle.copyWith(fontSize: 18, fontWeight: semiBold), overflow: TextOverflow.ellipsis,),
+                  Text(product.name, style: titleTextStyle.copyWith(fontSize: 18, fontWeight: semiBold), overflow: TextOverflow.ellipsis, maxLines: 1,),
                   SizedBox(height: 6,),
-                  Text('\$100', style: priceTextStyle.copyWith(fontWeight: medium, fontSize: 14),)
+                  Text('\$${product.price}', style: priceTextStyle.copyWith(fontWeight: medium, fontSize: 14),)
                 ],
               ),
             )
