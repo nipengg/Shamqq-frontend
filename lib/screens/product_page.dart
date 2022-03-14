@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:shamqq_frontend/models/product_model.dart';
 import 'package:shamqq_frontend/theme.dart';
 
 class ProductPage extends StatefulWidget {
+
+  final ProductModel product;
+  ProductPage(this.product);
 
   @override
   _ProductPageState createState() => _ProductPageState();
@@ -17,14 +21,13 @@ class _ProductPageState extends State<ProductPage> {
 
   List familiarShoes = [
     'assets/Sepatu_running.png',
-    'assets/Sepatu_running.png',
-    'assets/Sepatu_running.png',
-    'assets/Sepatu_running.png',
-    'assets/Sepatu_running.png',
-    'assets/Sepatu_running.png',
-    'assets/Sepatu_running.png',
-    'assets/Sepatu_running.png',
-    'assets/Sepatu_running.png',
+    'assets/shoes1.png',
+    'assets/shoes2.png',
+    'assets/shoes3.png',
+    'assets/shoes4.png',
+    'assets/shoes5.png',
+    'assets/shoes6.png',
+    'assets/shoes7.png',
   ];
 
   int currentIndex = 0;
@@ -128,7 +131,7 @@ class _ProductPageState extends State<ProductPage> {
             ),
           ),
           CarouselSlider(
-            items: images.map((image) => Image.asset(image,
+            items: widget.product.galleries.map((image) => Image.network(image.url,
               width: MediaQuery.of(context).size.width,
               height: 310,
               fit: BoxFit.cover,
@@ -146,7 +149,7 @@ class _ProductPageState extends State<ProductPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children:
-              images.map((e) {
+              widget.product.galleries.map((e) {
                 index++;
                 return indicator(index);
               }).toList(),
@@ -175,8 +178,8 @@ class _ProductPageState extends State<ProductPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Running Shoes 2.0", style: primaryTextStyle.copyWith(fontSize: 18, fontWeight: semiBold)),
-                        Text("Hiking", style: secondaryTextStyle.copyWith(fontSize: 12),)
+                        Text(widget.product.name, style: primaryTextStyle.copyWith(fontSize: 18, fontWeight: semiBold)),
+                        Text(widget.product.category.name, style: secondaryTextStyle.copyWith(fontSize: 12),)
                       ],
                     ),
                   ),
@@ -226,7 +229,7 @@ class _ProductPageState extends State<ProductPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Price starts from", style: primaryTextStyle.copyWith(fontSize: 14),),
-                  Text("\$149.99", style: priceTextStyle.copyWith(fontSize: 16, fontWeight: semiBold),)
+                  Text("\$${widget.product.price}", style: priceTextStyle.copyWith(fontSize: 16, fontWeight: semiBold),)
                 ],
               ),
             ),
@@ -241,7 +244,7 @@ class _ProductPageState extends State<ProductPage> {
                   Text("Description", style: primaryTextStyle.copyWith(fontWeight: medium),),
                   SizedBox(height: 12,),
                   Text(
-                    "Ipsum in Lorem quis amet eiusmod culpa excepteur irure.  Ad ut aliquip tempor amet officia tempor nisi officia exercitation. Ea aute commodo reprehenderit laborum et minim anim dolor quis ad mollit. Quis elit est adipisicing cillum. Quis elit est adipisicing cillum. Lorem",
+                    widget.product.description,
                     style: subtitleTextStyle.copyWith(fontWeight: light),
                     textAlign: TextAlign.justify,
                   )

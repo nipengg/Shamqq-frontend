@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
           '/home': (context) => MainPage(),
           '/detail-chat': (conetxt) => DetailChatPage(),
           '/edit-profile': (context) => EditProfile(),
-          '/product': (context) => ProductPage(),
+          // '/product': (context) => ProductPage(),
           '/cart': (context) => CartPage(),
           '/checkout': (contect) => CheckoutPage(),
           '/checkout-success': (context) => CheckoutSuccess(),
