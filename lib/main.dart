@@ -9,7 +9,7 @@ import 'package:shamqq_frontend/screens/checkout_success.dart';
 import 'package:shamqq_frontend/screens/edit_profile_page.dart';
 import 'package:shamqq_frontend/screens/home/detail_chat_page.dart';
 import 'package:shamqq_frontend/screens/home/main_page.dart';
-import 'package:shamqq_frontend/screens/product_page.dart';
+// import 'package:shamqq_frontend/screens/product_page.dart';
 import 'package:shamqq_frontend/screens/sign_in.dart';
 import 'package:shamqq_frontend/screens/sign_up.dart';
 import 'package:shamqq_frontend/screens/splash.dart';
@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => AuthProvider(),),
         ChangeNotifierProvider(create: (context) => ProductProvider(),),
         ChangeNotifierProvider(create: (context) => WishlistProvider(),),
+
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
