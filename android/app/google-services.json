@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "930476727359",
+    "project_id": "shamqq-47375",
+    "storage_bucket": "shamqq-47375.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:930476727359:android:dcb03aa7052fa6b10b6c8a",
+        "android_client_info": {
+          "package_name": "com.nipengg.shamqq_frontend"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "930476727359-k054tdn5dqussubf2glee1o20u9ugbkk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYJZUorO1qhO4PzVox9OB9dlt-AdI5qho"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "930476727359-k054tdn5dqussubf2glee1o20u9ugbkk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
