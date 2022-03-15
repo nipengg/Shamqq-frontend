@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shamqq_frontend/models/product_model.dart';
+import 'package:shamqq_frontend/screens/home/detail_chat_page.dart';
 import 'package:shamqq_frontend/theme.dart';
 
 class ChatTile extends StatelessWidget {
@@ -6,7 +8,7 @@ class ChatTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/detail-chat');
+        Navigator.push(context, MaterialPageRoute(builder: (context) => DetailChatPage(UninitializedProductModel(),),),);
       },
       child: Container(
         margin: EdgeInsets.only(top: 33),

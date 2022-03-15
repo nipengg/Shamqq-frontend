@@ -10,7 +10,7 @@ import 'package:shamqq_frontend/screens/cart_page.dart';
 import 'package:shamqq_frontend/screens/checkout_page.dart';
 import 'package:shamqq_frontend/screens/checkout_success.dart';
 import 'package:shamqq_frontend/screens/edit_profile_page.dart';
-import 'package:shamqq_frontend/screens/home/detail_chat_page.dart';
+// import 'package:shamqq_frontend/screens/home/detail_chat_page.dart';
 import 'package:shamqq_frontend/screens/home/main_page.dart';
 // import 'package:shamqq_frontend/screens/product_page.dart';
 import 'package:shamqq_frontend/screens/sign_in.dart';
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
           '/sign-in': (context) => SignInPage(),
           '/sign-up': (context) => SignUpPage(),
           '/home': (context) => MainPage(),
-          '/detail-chat': (conetxt) => DetailChatPage(),
+          // '/detail-chat': (conetxt) => DetailChatPage(),
           '/edit-profile': (context) => EditProfile(),
           // '/product': (context) => ProductPage(),
           '/cart': (context) => CartPage(),

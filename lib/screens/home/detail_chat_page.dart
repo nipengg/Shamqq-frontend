@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:shamqq_frontend/models/product_model.dart';
 import 'package:shamqq_frontend/theme.dart';
 import 'package:shamqq_frontend/widgets/chat_bubble.dart';
 
-class DetailChatPage extends StatelessWidget {
+class DetailChatPage extends StatefulWidget {
+
+  ProductModel product;
+  DetailChatPage(this.product);
+
+  @override
+  _DetailChatPageState createState() => _DetailChatPageState();
+}
+
+class _DetailChatPageState extends State<DetailChatPage> {
   @override
   Widget build(BuildContext context) {
 
@@ -46,7 +56,7 @@ class DetailChatPage extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              child: Image.asset('assets/Sepatu_running.png', width: 54,)
+              child: Image.network(widget.product.galleries[0].url, width: 54,)
             ),
             SizedBox(width: 10,),
             Expanded(
@@ -54,13 +64,20 @@ class DetailChatPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Sepatu Running 2.0', style: primaryTextStyle.copyWith(fontSize: 14), overflow: TextOverflow.ellipsis,),
+                  Text(widget.product.name, style: primaryTextStyle.copyWith(fontSize: 14), overflow: TextOverflow.ellipsis,),
                   SizedBox(height: 2,),
-                  Text('\$100', style: priceTextStyle.copyWith(fontWeight: medium),),
+                  Text('\$${widget.product.price}', style: priceTextStyle.copyWith(fontWeight: medium),),
                 ],
               ),
             ),
-            Image.asset('assets/button_close.png', width: 22,),
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  widget.product = UninitializedProductModel();
+                });
+              },
+              child: Image.asset('assets/button_close.png', width: 22,),
+            ),
           ],
         ),
       );
@@ -73,7 +90,7 @@ class DetailChatPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            productPreview(),
+            widget.product is UninitializedProductModel ? SizedBox() : productPreview(),
             Row(
               children: [
                 Expanded(

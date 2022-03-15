@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:shamqq_frontend/models/product_model.dart';
 import 'package:shamqq_frontend/providers/cart_provider.dart';
 import 'package:shamqq_frontend/providers/wishlist_provider.dart';
+import 'package:shamqq_frontend/screens/home/detail_chat_page.dart';
 import 'package:shamqq_frontend/theme.dart';
 
 class ProductPage extends StatefulWidget {
@@ -295,7 +296,7 @@ class _ProductPageState extends State<ProductPage> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, '/detail-chat');
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => DetailChatPage(widget.product),),);
                     },
                     child: Container(
                       width: 54,
