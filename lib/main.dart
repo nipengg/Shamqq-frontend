@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shamqq_frontend/providers/auth_provider.dart';
@@ -16,7 +17,11 @@ import 'package:shamqq_frontend/screens/sign_in.dart';
 import 'package:shamqq_frontend/screens/sign_up.dart';
 import 'package:shamqq_frontend/screens/splash.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
