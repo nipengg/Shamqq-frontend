@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:shamqq_frontend/providers/auth_provider.dart';
 import 'package:shamqq_frontend/providers/cart_provider.dart';
 import 'package:shamqq_frontend/providers/product_provider.dart';
+import 'package:shamqq_frontend/providers/transaction_provider.dart';
 import 'package:shamqq_frontend/providers/wishlist_provider.dart';
 import 'package:shamqq_frontend/screens/cart_page.dart';
 import 'package:shamqq_frontend/screens/checkout_page.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => ProductProvider(),),
         ChangeNotifierProvider(create: (context) => WishlistProvider(),),
         ChangeNotifierProvider(create: (context) => CartProvider(),),
+        ChangeNotifierProvider(create: (context) => TransactionProvider(),),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

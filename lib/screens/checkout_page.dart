@@ -1,14 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shamqq_frontend/providers/auth_provider.dart';
 import 'package:shamqq_frontend/providers/cart_provider.dart';
+import 'package:shamqq_frontend/providers/transaction_provider.dart';
 import 'package:shamqq_frontend/theme.dart';
 import 'package:shamqq_frontend/widgets/checkout_card.dart';
+import 'package:shamqq_frontend/widgets/loading_button.dart';
 
-class CheckoutPage extends StatelessWidget {
+class CheckoutPage extends StatefulWidget {
+  @override
+  _CheckoutPageState createState() => _CheckoutPageState();
+}
+
+class _CheckoutPageState extends State<CheckoutPage> {
+
+  bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
 
     CartProvider cartProvider = Provider.of<CartProvider>(context);
+    TransactionProvider transactionProvider = Provider.of<TransactionProvider>(context);
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
+    handleCheckout() async {
+
+      setState(() {
+        isLoading = true;
+      });
+
+      if (await transactionProvider.checkout(authProvider.user.token, cartProvider.carts, cartProvider.totalPrice())) {
+        cartProvider.carts = [];
+        Navigator.pushNamedAndRemoveUntil(context, '/checkout-success', (route) => false);
+      }
+
+      setState(() {
+        isLoading = false;
+      });
+    }
 
     Widget header(){
       return AppBar(
@@ -130,6 +159,7 @@ class CheckoutPage extends StatelessWidget {
           //  Checkout Button
           SizedBox(height: defaultMargin,),
           Divider(thickness: 1, color: Color(0xff2E3141),),
+          isLoading ? Container(margin: EdgeInsets.only(bottom: 30) ,child: LoadingButton()) :
           Container(
             height: 50,
             margin: EdgeInsets.symmetric(vertical: defaultMargin),
@@ -141,9 +171,7 @@ class CheckoutPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-              onPressed: () {
-                Navigator.pushNamedAndRemoveUntil(context, '/checkout-success', (route) => false);
-              },
+              onPressed: handleCheckout,
               child: Text('Checkout Now', style: primaryTextStyle.copyWith(fontSize: 16, fontWeight: semiBold),),
             ),
           ),
