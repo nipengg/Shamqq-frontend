@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shamqq_frontend/providers/auth_provider.dart';
+import 'package:shamqq_frontend/providers/cart_provider.dart';
 import 'package:shamqq_frontend/providers/product_provider.dart';
 import 'package:shamqq_frontend/providers/wishlist_provider.dart';
 import 'package:shamqq_frontend/screens/cart_page.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => AuthProvider(),),
         ChangeNotifierProvider(create: (context) => ProductProvider(),),
         ChangeNotifierProvider(create: (context) => WishlistProvider(),),
-
+        ChangeNotifierProvider(create: (context) => CartProvider(),),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

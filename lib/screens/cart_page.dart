@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shamqq_frontend/providers/cart_provider.dart';
 import 'package:shamqq_frontend/theme.dart';
 import 'package:shamqq_frontend/widgets/cart_card.dart';
 
@@ -6,6 +8,8 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
 
     Widget header(){
       return AppBar(
@@ -51,9 +55,7 @@ class CartPage extends StatelessWidget {
     Widget content(){
       return ListView(
         padding: EdgeInsets.symmetric(horizontal: 30),
-        children: [
-          CartCard(),
-        ],
+        children: cartProvider.carts.map((cart) => CartCard(cart)).toList(),
       );
     }
 
@@ -68,7 +70,7 @@ class CartPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Subtotal', style: primaryTextStyle,),
-                  Text('\$100', style: priceTextStyle.copyWith(fontSize: 16, fontWeight: semiBold),),
+                  Text('\$${cartProvider.totalPrice()}', style: priceTextStyle.copyWith(fontSize: 16, fontWeight: semiBold),),
                 ],
               ),
             ),
@@ -107,8 +109,8 @@ class CartPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: background3,
       appBar: header(),
-      body: content(),
-      bottomNavigationBar: customButtonNav(),
+      body: cartProvider.carts.length == 0 ? emptyCart() : content(),
+      bottomNavigationBar: cartProvider.carts.length == 0 ? SizedBox() : customButtonNav(),
     );
   }
 }
