@@ -33,16 +33,16 @@ class ChatBubble extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(12),
-                  child: Image.asset('assets/Sepatu_running.png', width: 70,)
+                  child: Image.network(product.galleries[0].url, width: 70,)
                 ),
                 SizedBox(width: 8,),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Sepatu Running 2.0', style: primaryTextStyle,),
+                      Text(product.name, style: primaryTextStyle,),
                       SizedBox(height: 4,),
-                      Text('\$100', style: priceTextStyle.copyWith(fontWeight: medium),),
+                      Text('\$${product.price}', style: priceTextStyle.copyWith(fontWeight: medium),),
                     ],
                   ),
                 ),

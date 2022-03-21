@@ -159,6 +159,7 @@ class _DetailChatPageState extends State<DetailChatPage> {
             children: snapshot.data.map((MessageModel message) => ChatBubble(
               isSender: message.isFromUser,
               text: message.message,
+              product: message.product,
             )).toList(),
           );
           }

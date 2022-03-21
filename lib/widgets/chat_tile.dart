@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:shamqq_frontend/models/message_model.dart';
 import 'package:shamqq_frontend/models/product_model.dart';
 import 'package:shamqq_frontend/screens/home/detail_chat_page.dart';
 import 'package:shamqq_frontend/theme.dart';
 
 class ChatTile extends StatelessWidget {
+
+  final MessageModel message;
+  ChatTile(this.message);
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -24,7 +29,7 @@ class ChatTile extends StatelessWidget {
                     children: [
                       Text('Shoe Store', style: primaryTextStyle.copyWith(fontSize: 15),),
                       Text(
-                        'Good Nite, Item is ready..',
+                        message.message,
                         style: secondaryTextStyle.copyWith(fontSize: 14, fontWeight: light),
                         overflow: TextOverflow.ellipsis,
                       ),
