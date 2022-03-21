@@ -23,12 +23,12 @@ class MessageModel{
   });
 
   MessageModel.fromJson(Map<String, dynamic> json) {
-    message = json['message'];
+    message = json['messages'];
     userId = json['userId'];
     userName = json['userName'];
     userImage = json['userImage'];
     isFromUser = json['isFromUser'];
-    product = json['product'] == {} ? UninitializedProductModel() : ProductModel.fromJson(json['product']);
+    product = json['product'].isEmpty ? UninitializedProductModel() : ProductModel.fromJson(json['product']);
     createdAt = DateTime.parse(json['createdAt']);
     updatedAt = DateTime.parse(json['updatedAt']);
   }

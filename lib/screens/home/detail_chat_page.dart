@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shamqq_frontend/models/message_model.dart';
 import 'package:shamqq_frontend/models/product_model.dart';
 import 'package:shamqq_frontend/providers/auth_provider.dart';
 import 'package:shamqq_frontend/services/message_service.dart';
@@ -148,12 +149,25 @@ class _DetailChatPageState extends State<DetailChatPage> {
     }
 
     Widget content(){
-      return ListView(
-        padding: EdgeInsets.symmetric(horizontal: defaultMargin),
-        children: [
-          ChatBubble(isSender: true, text: 'Hi, Is this Item still available?', hasProduct: true,),
-          ChatBubble(isSender: false, text: 'Goodnight, this item is available in size 40 and 41',),
-        ],
+      return StreamBuilder<List<MessageModel>>(
+        stream: MessageService().getMessagesByUserId(userId: authProvider.user.id),
+        builder: (context, snapshot) {
+
+          if (snapshot.hasData) {
+            return ListView(
+            padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+            children: snapshot.data.map((MessageModel message) => ChatBubble(
+              isSender: message.isFromUser,
+              text: message.message,
+            )).toList(),
+          );
+          }
+          else {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        }
       );
     }
 
