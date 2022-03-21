@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shamqq_frontend/models/message_model.dart';
 import 'package:shamqq_frontend/providers/auth_provider.dart';
+import 'package:shamqq_frontend/providers/page_provider.dart';
 import 'package:shamqq_frontend/services/message_service.dart';
 import 'package:shamqq_frontend/theme.dart';
 import 'package:shamqq_frontend/widgets/chat_tile.dart';
@@ -11,6 +12,7 @@ class ChatPage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    PageProvider pageProvider = Provider.of<PageProvider>(context);
 
     Widget header(){
       return AppBar(
@@ -39,7 +41,9 @@ class ChatPage extends StatelessWidget {
               Container(
                 height: 44,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    pageProvider.currentIndex = 0;
+                  },
                   style: TextButton.styleFrom(
                     padding: EdgeInsets.symmetric(horizontal: 24, vertical: 10),
                     backgroundColor: primaryColor,
