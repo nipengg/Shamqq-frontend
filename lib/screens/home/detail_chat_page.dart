@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shamqq_frontend/models/product_model.dart';
+import 'package:shamqq_frontend/providers/auth_provider.dart';
+import 'package:shamqq_frontend/services/message_service.dart';
 import 'package:shamqq_frontend/theme.dart';
 import 'package:shamqq_frontend/widgets/chat_bubble.dart';
 
@@ -13,8 +16,27 @@ class DetailChatPage extends StatefulWidget {
 }
 
 class _DetailChatPageState extends State<DetailChatPage> {
+
+  TextEditingController messageController = TextEditingController(text: '');
+
   @override
   Widget build(BuildContext context) {
+
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
+    handleAddMessage() async {
+      await MessageService().addMessage(
+        user: authProvider.user,
+        isFromUser: true,
+        product: widget.product,
+        message: messageController.text,
+      );
+
+      setState(() {
+        widget.product = UninitializedProductModel();
+        messageController.text = '';
+      });
+    }
 
     Widget header(){
       return PreferredSize(
@@ -103,6 +125,7 @@ class _DetailChatPageState extends State<DetailChatPage> {
                     padding: EdgeInsets.symmetric(horizontal: 16),
                     child: Center(
                       child: TextFormField(
+                        controller: messageController,
                         style: primaryTextStyle,
                         decoration: InputDecoration.collapsed(
                           hintText: 'Type message...',
@@ -113,7 +136,10 @@ class _DetailChatPageState extends State<DetailChatPage> {
                   ),
                 ),
                 SizedBox(width: 20,),
-                Image.asset('assets/send_button.png', width: 45,),
+                GestureDetector(
+                  onTap: handleAddMessage,
+                  child: Image.asset('assets/send_button.png', width: 45,)
+                ),
               ],
             ),
           ],
